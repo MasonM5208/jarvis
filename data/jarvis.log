@@ -1,0 +1,352 @@
+/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/langchain_core/_api/deprecation.py:25: UserWarning: Core Pydantic V1 functionality isn't compatible with Python 3.14 or greater.
+  from pydantic.v1.fields import FieldInfo as FieldInfoV1
+INFO:     Started server process [29117]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/langchain_core/_api/deprecation.py:25: UserWarning: Core Pydantic V1 functionality isn't compatible with Python 3.14 or greater.
+  from pydantic.v1.fields import FieldInfo as FieldInfoV1
+INFO:     Started server process [29986]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+🤖 JARVIS API starting on http://localhost:8000
+🚀 Starting JARVIS...
+✅ JARVIS online — model: llama3.2 | knowledge chunks: 9
+👋 JARVIS shutting down.
+/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/langchain_core/_api/deprecation.py:25: UserWarning: Core Pydantic V1 functionality isn't compatible with Python 3.14 or greater.
+  from pydantic.v1.fields import FieldInfo as FieldInfoV1
+INFO:     Started server process [861]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+🤖 JARVIS API starting on http://localhost:8000
+🚀 Starting JARVIS...
+✅ JARVIS online — model: llama3.2 | knowledge chunks: 9
+INFO:     127.0.0.1:49557 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49827 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49849 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49867 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49877 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49878 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49879 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49882 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1159, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 121, in app
+    await response(scope, receive, send)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/responses.py", line 273, in __call__
+    with collapse_excgroups():
+         ~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+    raise exc
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/responses.py", line 277, in wrap
+    await func()
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/starlette/responses.py", line 250, in stream_response
+    async for chunk in self.body_iterator:
+    ...<2 lines>...
+        await send({"type": "http.response.body", "body": chunk, "more_body": True})
+  File "/Users/masonmiller/Downloads/jarvis/main.py", line 86, in stream_response
+    response = agent.chat(user_message, session_id=session_id)
+  File "/Users/masonmiller/Downloads/jarvis/agent/agent.py", line 65, in chat
+    memory_context = self.memory.recall(message, session_id)
+  File "/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py", line 232, in recall
+    hits = self.knowledge.search(query, n=TOP_K_RESULTS)
+  File "/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py", line 101, in search
+    results = self.collection.query(**kwargs)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/api/models/Collection.py", line 251, in query
+    query_request = self._validate_and_prepare_query_request(
+        query_embeddings=query_embeddings,
+    ...<7 lines>...
+        include=include,
+    )
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/api/models/CollectionCommon.py", line 103, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/api/models/CollectionCommon.py", line 336, in _validate_and_prepare_query_request
+    request_embeddings = self._embed_record_set(
+        record_set=query_records, is_query=True
+    )
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/api/models/CollectionCommon.py", line 736, in _embed_record_set
+    return self._embed(
+           ~~~~~~~~~~~^
+        input=record_set[field],  # type: ignore[literal-required]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        is_query=is_query,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/api/models/CollectionCommon.py", line 751, in _embed
+    return self._embedding_function.embed_query(input=input)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/api/types.py", line 852, in embed_query
+    return self.__call__(input)
+           ~~~~~~~~~~~~~^^^^^^^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/api/types.py", line 860, in __call__
+    result = call(self, input)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/chromadb/utils/embedding_functions/ollama_embedding_function.py", line 66, in __call__
+    response = self._client.embed(model=self.model_name, input=input)
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/ollama/_client.py", line 393, in embed
+    return self._request(
+           ~~~~~~~~~~~~~^
+      EmbedResponse,
+      ^^^^^^^^^^^^^^
+    ...<9 lines>...
+      ).model_dump(exclude_none=True),
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/ollama/_client.py", line 189, in _request
+    return cls(**self._request_raw(*args, **kwargs).json())
+                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/masonmiller/Downloads/.venv/lib/python3.14/site-packages/ollama/_client.py", line 133, in _request_raw
+    raise ResponseError(e.response.text, e.response.status_code) from None
+ollama._types.ResponseError: the input length exceeds the context length (status code: 400)
+INFO:     127.0.0.1:49907 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49912 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49913 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/tools/tools.py:241: RuntimeWarning: This package (`duckduckgo_search`) has been renamed to `ddgs`! Use `pip install ddgs` instead.
+  with DDGS() as ddgs:
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+INFO:     127.0.0.1:49915 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49919 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+INFO:     127.0.0.1:49922 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49925 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+INFO:     127.0.0.1:49928 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49936 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49946 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+INFO:     127.0.0.1:49949 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+INFO:     127.0.0.1:49950 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+INFO:     127.0.0.1:49957 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49984 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+INFO:     127.0.0.1:49990 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50060 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:159: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  (session_id, role, content, datetime.utcnow().isoformat()),
+/Users/masonmiller/Downloads/jarvis/memory/memory_manager.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "ingested_at": datetime.utcnow().isoformat(),
+INFO:     127.0.0.1:50078 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50090 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50132 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50155 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50164 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50190 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50206 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50218 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50228 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50236 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50239 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50243 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50247 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50255 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50266 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50603 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50681 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50699 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50703 - "GET /v1/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50707 - "GET /v1/models HTTP/1.1" 200 OK

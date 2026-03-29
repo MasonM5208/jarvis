@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JARVIS — Control Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3d;
+    --accent: #7c6af7;
+    --accent2: #4fd1c7;
+    --warn: #f6ad55;
+    --danger: #fc8181;
+    --ok: #68d391;
+    --text: #e2e8f0;
+    --muted: #718096;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  /* ── Header ── */
+  header {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+  .header-meta { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); display: flex; gap: 1.5rem; }
+  .status-badge { display: flex; align-items: center; gap: 0.4rem; }
+  .status-badge.ok::before { content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--ok); }
+  .status-badge.offline::before { content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--danger); }
+
+  /* ── Sidebar ── */
+  nav {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .nav-section { padding: 1rem 1.25rem 0.5rem; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+  .nav-item {
+    margin: 0 0.75rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    transition: all 0.15s;
+    border: 1px solid transparent;
+    font-weight: 400;
+  }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { background: rgba(124,106,247,0.15); color: var(--accent); border-color: rgba(124,106,247,0.3); }
+  .nav-item .icon { font-size: 1rem; width: 1.2rem; text-align: center; }
+
+  /* ── Main content ── */
+  main { padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+
+  /* Panel sections */
+  .panel { display: none; flex-direction: column; gap: 1.5rem; }
+  .panel.active { display: flex; }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-title { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .card-body { padding: 1.25rem; }
+
+  /* Stats grid */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+  .stat-card.teal::after { background: var(--accent2); }
+  .stat-card.ok::after { background: var(--ok); }
+  .stat-card.warn::after { background: var(--warn); }
+  .stat-val { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--text); }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+
+  /* Forms & inputs */
+  input[type=text], textarea, select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    padding: 0.6rem 0.85rem;
+    width: 100%;
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  input[type=text]:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 80px; font-family: var(--mono); font-size: 0.82rem; }
+  .form-row { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .form-row input { flex: 1; }
+  label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.4rem; font-family: var(--mono); }
+
+  /* Buttons */
+  button {
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.6rem 1.1rem;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  button:hover { filter: brightness(1.15); }
+  button:active { transform: scale(0.97); }
+  button.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  button.secondary:hover { border-color: var(--accent); color: var(--accent); }
+  button.danger { background: rgba(252,129,129,0.15); color: var(--danger); border: 1px solid rgba(252,129,129,0.3); }
+  button.danger:hover { background: rgba(252,129,129,0.25); }
+  button.ok-btn { background: rgba(104,211,145,0.15); color: var(--ok); border: 1px solid rgba(104,211,145,0.3); }
+  button.ok-btn:hover { background: rgba(104,211,145,0.25); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; filter: none; transform: none; }
+
+  /* Log viewer */
+  .log-area {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.85rem;
+    height: 320px;
+    overflow-y: auto;
+    line-height: 1.7;
+  }
+  .log-line { display: flex; gap: 0.75rem; }
+  .log-ts { color: var(--muted); flex-shrink: 0; }
+  .log-level { flex-shrink: 0; width: 4rem; }
+  .log-level.INFO { color: var(--accent2); }
+  .log-level.ERROR { color: var(--danger); }
+  .log-level.WARN { color: var(--warn); }
+  .log-level.DEBUG { color: var(--muted); }
+  .log-msg { color: var(--text); word-break: break-all; }
+
+  /* Code blocks */
+  pre {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    padding: 1rem;
+    overflow-x: auto;
+    line-height: 1.6;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  code { color: var(--accent2); }
+
+  /* Plugin cards */
+  .plugin-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .plugin-info { flex: 1; min-width: 0; }
+  .plugin-name { font-family: var(--mono); font-size: 0.88rem; color: var(--accent); }
+  .plugin-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
+  .plugin-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .badge.ok { background: rgba(104,211,145,0.15); color: var(--ok); }
+  .badge.pending { background: rgba(246,173,85,0.15); color: var(--warn); }
+  .badge.rejected { background: rgba(252,129,129,0.15); color: var(--danger); }
+
+  /* Memory list */
+  .memory-item {
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 0;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .memory-item:last-child { border-bottom: none; }
+  .memory-cat { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
+  .memory-content { font-size: 0.88rem; line-height: 1.5; }
+  .memory-date { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* Toast */
+  #toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    font-family: var(--mono);
+    transform: translateY(200%);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1000;
+    max-width: 380px;
+  }
+  #toast.show { transform: translateY(0); }
+  #toast.ok { border-color: var(--ok); color: var(--ok); }
+  #toast.err { border-color: var(--danger); color: var(--danger); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    body { grid-template-columns: 1fr; }
+    nav { display: none; }
+    header { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="dot"></div>
+    JARVIS
+  </div>
+  <div class="header-meta">
+    <span id="hdr-status" class="status-badge ok">offline</span>
+    <span id="hdr-model" style="color:var(--muted)">—</span>
+    <span id="hdr-platform" style="color:var(--muted)">—</span>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-section">System</div>
+  <div class="nav-item active" data-panel="overview" onclick="switchPanel('overview',this)">
+    <span class="icon">◈</span> Overview
+  </div>
+  <div class="nav-item" data-panel="logs" onclick="switchPanel('logs',this)">
+    <span class="icon">≡</span> Logs
+  </div>
+
+  <div class="nav-section">Knowledge</div>
+  <div class="nav-item" data-panel="ingest" onclick="switchPanel('ingest',this)">
+    <span class="icon">⊕</span> Ingest
+  </div>
+  <div class="nav-item" data-panel="memory" onclick="switchPanel('memory',this)">
+    <span class="icon">◉</span> Memory
+  </div>
+
+  <div class="nav-section">Extend</div>
+  <div class="nav-item" data-panel="plugins" onclick="switchPanel('plugins',this)">
+    <span class="icon">⬡</span> Plugins
+  </div>
+
+  <div class="nav-section">Config</div>
+  <div class="nav-item" data-panel="settings" onclick="switchPanel('settings',this)">
+    <span class="icon">⚙</span> Settings
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── Overview ── -->
+  <div id="panel-overview" class="panel active">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val" id="stat-chunks">—</div>
+        <div class="stat-label">Knowledge Chunks</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="stat-val" id="stat-summaries">—</div>
+        <div class="stat-label">Long-term Summaries</div>
+      </div>
+      <div class="stat-card ok">
+        <div class="stat-val" id="stat-plugins">—</div>
+        <div class="stat-label">Loaded Plugins</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-val" id="stat-pending">—</div>
+        <div class="stat-label">Pending Review</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Quick Ingest</span>
+      </div>
+      <div class="card-body">
+        <label>File or folder path</label>
+        <div class="form-row">
+          <input type="text" id="quick-path" placeholder="~/Documents/notes.pdf or ~/Obsidian/Vault">
+          <button onclick="quickIngest()">Ingest</button>
+          <button class="secondary" onclick="syncObsidian()">Sync Obsidian</button>
+        </div>
+        <div id="quick-result" style="margin-top:0.75rem;font-family:var(--mono);font-size:0.78rem;color:var(--muted);white-space:pre-wrap;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Slash Commands Reference</span>
+      </div>
+      <div class="card-body" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0.75rem;">
+        <div style="font-family:var(--mono);font-size:0.8rem;line-height:2.2;">
+          <div><code style="color:var(--accent)">/flashcards</code> <span style="color:var(--muted)">&lt;topic&gt;</span></div>
+          <div><code style="color:var(--accent)">/feynman</code> <span style="color:var(--muted)">&lt;topic&gt;</span></div>
+          <div><code style="color:var(--accent)">/outline</code> <span style="color:var(--muted)">&lt;topic&gt;</span></div>
+          <div><code style="color:var(--accent)">/quiz</code> <span style="color:var(--muted)">&lt;topic&gt;</span></div>
+        </div>
+        <div style="font-family:var(--mono);font-size:0.8rem;line-height:2.2;">
+          <div><code style="color:var(--accent2)">/ingest</code> <span style="color:var(--muted)">&lt;path&gt;</span></div>
+          <div><code style="color:var(--accent2)">/obsidian</code> <span style="color:var(--muted)">[path]</span></div>
+          <div><code style="color:var(--accent2)">/plugin request</code> <span style="color:var(--muted)">&lt;desc&gt;</span></div>
+          <div><code style="color:var(--accent2)">/help</code></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Logs ── -->
+  <div id="panel-logs" class="panel">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Live Log Feed</span>
+        <div style="display:flex;gap:0.5rem">
+          <button class="secondary" onclick="clearLogs()">Clear</button>
+          <button onclick="loadLogs()">Refresh</button>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0">
+        <div class="log-area" id="log-area">
+          <div class="log-line">
+            <span class="log-ts">—</span>
+            <span class="log-level INFO">INFO</span>
+            <span class="log-msg">Connecting to JARVIS...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Ingest ── -->
+  <div id="panel-ingest" class="panel">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Ingest by Path</span></div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <label>Path (file or directory)</label>
+          <div class="form-row">
+            <input type="text" id="ingest-path" placeholder="~/Documents/CS101 or ~/notes.pdf">
+            <button onclick="ingestPath()">Ingest</button>
+          </div>
+        </div>
+        <div id="ingest-result" style="font-family:var(--mono);font-size:0.78rem;color:var(--muted);white-space:pre-wrap;max-height:200px;overflow-y:auto;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Obsidian Vault Sync</span></div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <label>Vault path (leave empty to use OBSIDIAN_VAULT_PATH from .env)</label>
+          <div class="form-row">
+            <input type="text" id="obsidian-path" placeholder="~/Documents/Obsidian (optional)">
+            <button onclick="syncObsidianFull()">Sync Vault</button>
+          </div>
+        </div>
+        <div id="obsidian-result" style="font-family:var(--mono);font-size:0.78rem;color:var(--muted);white-space:pre-wrap;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Clip URL</span></div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <label>URL to clip into knowledge base</label>
+          <div class="form-row">
+            <input type="text" id="clip-url" placeholder="https://...">
+            <input type="text" id="clip-tags" placeholder="tags (comma-separated)" style="max-width:200px">
+            <button onclick="clipUrl()">Clip</button>
+          </div>
+        </div>
+        <div id="clip-result" style="font-family:var(--mono);font-size:0.78rem;color:var(--muted);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Memory ── -->
+  <div id="panel-memory" class="panel">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Long-term Summaries</span>
+        <button onclick="loadMemory()">Refresh</button>
+      </div>
+      <div class="card-body">
+        <div id="memory-list">
+          <span style="color:var(--muted);font-size:0.85rem">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Plugins ── -->
+  <div id="panel-plugins" class="panel">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Request New Plugin</span></div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <label>Describe the capability you need</label>
+          <textarea id="plugin-request" placeholder="e.g. I need a tool to query my university's course schedule API and return my upcoming classes"></textarea>
+        </div>
+        <div style="display:flex;gap:0.5rem">
+          <button onclick="requestPlugin()">Generate Plugin</button>
+          <button class="secondary" onclick="loadPlugins()">Refresh List</button>
+        </div>
+        <div id="plugin-request-result" style="font-family:var(--mono);font-size:0.78rem;color:var(--muted);white-space:pre-wrap;max-height:300px;overflow-y:auto;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Plugin Registry</span></div>
+      <div class="card-body">
+        <div id="plugin-list" style="display:flex;flex-direction:column;gap:0.75rem">
+          <span style="color:var(--muted);font-size:0.85rem">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Settings ── -->
+  <div id="panel-settings" class="panel">
+    <div class="card">
+      <div class="card-header"><span class="card-title">Environment Variables</span></div>
+      <div class="card-body">
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">
+          JARVIS is configured via <code style="color:var(--accent2)">.env</code> file in the project root.
+          Copy <code style="color:var(--accent2)">.env.example</code> to <code style="color:var(--accent2)">.env</code> and edit it.
+          Restart JARVIS for changes to take effect.
+        </p>
+        <pre id="env-display">Loading configuration...</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Health Check</span></div>
+      <div class="card-body">
+        <pre id="health-display">Loading...</pre>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div id="toast"></div>
+
+<script>
+const API = 'http://localhost:8000';
+
+// ── Toast ──────────────────────────────────────────────────────────────────
+function toast(msg, type = 'ok') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `show ${type}`;
+  setTimeout(() => { t.className = ''; }, 3500);
+}
+
+// ── Panel switching ────────────────────────────────────────────────────────
+function switchPanel(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(`panel-${id}`).classList.add('active');
+  el.classList.add('active');
+  if (id === 'logs') loadLogs();
+  if (id === 'memory') loadMemory();
+  if (id === 'plugins') loadPlugins();
+  if (id === 'settings') loadSettings();
+}
+
+// ── Health check ──────────────────────────────────────────────────────────
+async function checkHealth() {
+  try {
+    const r = await fetch(`${API}/health`);
+    const d = await r.json();
+    document.getElementById('hdr-status').className = 'status-badge ok';
+    document.getElementById('hdr-status').textContent = 'online';
+    document.getElementById('hdr-model').textContent = d.model || '—';
+    document.getElementById('hdr-platform').textContent = d.platform || '—';
+    document.getElementById('stat-chunks').textContent = d.stats?.knowledge_chunks ?? '—';
+    document.getElementById('stat-summaries').textContent = d.stats?.summaries ?? '—';
+    const pluginInfo = d.stats?.plugins || {};
+    document.getElementById('stat-plugins').textContent = (pluginInfo.loaded || []).length;
+    document.getElementById('stat-pending').textContent = (pluginInfo.pending || []).length;
+  } catch {
+    document.getElementById('hdr-status').className = 'status-badge offline';
+    document.getElementById('hdr-status').textContent = 'offline';
+  }
+}
+
+// ── Logs ──────────────────────────────────────────────────────────────────
+let logLines = [];
+function addLog(ts, level, msg) {
+  const area = document.getElementById('log-area');
+  const el = document.createElement('div');
+  el.className = 'log-line';
+  el.innerHTML = `<span class="log-ts">${ts}</span><span class="log-level ${level}">${level}</span><span class="log-msg">${msg}</span>`;
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+}
+function loadLogs() {
+  // In a real deployment, stream from /logs endpoint
+  // For now just show a placeholder
+  const area = document.getElementById('log-area');
+  area.innerHTML = '';
+  const now = new Date().toISOString().slice(11, 19);
+  addLog(now, 'INFO', 'Log streaming requires a /logs SSE endpoint — add to main.py');
+  addLog(now, 'INFO', 'See logs/jarvis.log for structured JSON logs');
+  checkHealth().then(() => addLog(new Date().toISOString().slice(11, 19), 'INFO', 'Health check complete'));
+}
+function clearLogs() {
+  document.getElementById('log-area').innerHTML = '';
+}
+
+// ── Ingest ────────────────────────────────────────────────────────────────
+async function quickIngest() {
+  const path = document.getElementById('quick-path').value.trim();
+  if (!path) return;
+  const el = document.getElementById('quick-result');
+  el.textContent = 'Ingesting...';
+  try {
+    const r = await fetch(`${API}/ingest/path`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({path})
+    });
+    const d = await r.json();
+    el.textContent = d.result || JSON.stringify(d);
+    toast('Ingest complete ✓');
+    checkHealth();
+  } catch (e) {
+    el.textContent = `Error: ${e.message}`;
+    toast('Ingest failed', 'err');
+  }
+}
+
+async function ingestPath() {
+  const path = document.getElementById('ingest-path').value.trim();
+  if (!path) return;
+  const el = document.getElementById('ingest-result');
+  el.textContent = 'Ingesting...';
+  try {
+    const r = await fetch(`${API}/ingest/path`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({path})
+    });
+    const d = await r.json();
+    el.textContent = d.result || JSON.stringify(d);
+    toast('Ingest complete ✓');
+    checkHealth();
+  } catch (e) {
+    el.textContent = `Error: ${e.message}`;
+    toast('Ingest failed', 'err');
+  }
+}
+
+async function syncObsidian() {
+  toast('Syncing Obsidian vault...');
+  try {
+    const r = await fetch(`${API}/ingest/obsidian`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({})
+    });
+    const d = await r.json();
+    const msg = `✅ ${(d.ok||[]).length} files synced, ${(d.errors||[]).length} errors`;
+    document.getElementById('quick-result').textContent = msg;
+    toast('Obsidian sync complete ✓');
+    checkHealth();
+  } catch (e) {
+    toast('Obsidian sync failed', 'err');
+  }
+}
+
+async function syncObsidianFull() {
+  const vault = document.getElementById('obsidian-path').value.trim() || null;
+  const el = document.getElementById('obsidian-result');
+  el.textContent = 'Syncing...';
+  try {
+    const r = await fetch(`${API}/ingest/obsidian`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({vault_path: vault})
+    });
+    const d = await r.json();
+    const ok = d.ok || [];
+    const errs = d.errors || [];
+    let msg = `✅ ${ok.length} files ingested`;
+    if (errs.length) msg += `\n❌ ${errs.length} errors:\n` + errs.slice(0,5).map(e => `  ${e.file}: ${e.error}`).join('\n');
+    el.textContent = msg;
+    toast('Sync complete ✓');
+    checkHealth();
+  } catch (e) {
+    el.textContent = `Error: ${e.message}`;
+    toast('Sync failed', 'err');
+  }
+}
+
+async function clipUrl() {
+  const url = document.getElementById('clip-url').value.trim();
+  const tagsRaw = document.getElementById('clip-tags').value.trim();
+  const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()) : [];
+  if (!url) return;
+  const el = document.getElementById('clip-result');
+  el.textContent = 'Clipping...';
+  try {
+    const r = await fetch(`${API}/clip`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({url, tags})
+    });
+    const d = await r.json();
+    el.textContent = `✅ "${d.title}" — ${d.chunks_stored} chunks stored`;
+    toast('Clipped ✓');
+    checkHealth();
+  } catch (e) {
+    el.textContent = `Error: ${e.message}`;
+    toast('Clip failed', 'err');
+  }
+}
+
+// ── Memory ────────────────────────────────────────────────────────────────
+async function loadMemory() {
+  const el = document.getElementById('memory-list');
+  try {
+    const r = await fetch(`${API}/memory/summaries`);
+    const items = await r.json();
+    if (!items.length) {
+      el.innerHTML = '<span style="color:var(--muted);font-size:0.85rem">No long-term summaries yet. Start chatting!</span>';
+      return;
+    }
+    el.innerHTML = items.map(m => `
+      <div class="memory-item">
+        <div>
+          <div class="memory-cat">${m.category}</div>
+          <div class="memory-date">${m.updated_at?.slice(0,10) || ''}</div>
+        </div>
+        <div class="memory-content">${m.content}</div>
+      </div>
+    `).join('');
+  } catch (e) {
+    el.innerHTML = `<span style="color:var(--danger);font-size:0.85rem">Error: ${e.message}</span>`;
+  }
+}
+
+// ── Plugins ───────────────────────────────────────────────────────────────
+async function loadPlugins() {
+  const el = document.getElementById('plugin-list');
+  try {
+    const r = await fetch(`${API}/plugins`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action: 'list'})
+    });
+    const d = await r.json();
+    const all = [
+      ...(d.loaded || []).map(n => ({name: n, status: 'loaded'})),
+      ...(d.pending || []).map(n => ({name: n, status: 'pending'})),
+    ];
+    if (!all.length) {
+      el.innerHTML = '<span style="color:var(--muted);font-size:0.85rem">No plugins yet. Use /plugin request or the form above.</span>';
+      return;
+    }
+    el.innerHTML = all.map(p => `
+      <div class="plugin-item">
+        <div class="plugin-info">
+          <div class="plugin-name">${p.name}</div>
+          <span class="badge ${p.status === 'loaded' ? 'ok' : 'pending'}">${p.status}</span>
+        </div>
+        <div class="plugin-actions">
+          ${p.status === 'pending' ? `
+            <button class="ok-btn" onclick="approvePlugin('${p.name}')">Approve</button>
+            <button class="danger" onclick="rejectPlugin('${p.name}')">Reject</button>
+          ` : ''}
+        </div>
+      </div>
+    `).join('');
+    checkHealth();
+  } catch (e) {
+    el.innerHTML = `<span style="color:var(--danger)">Error: ${e.message}</span>`;
+  }
+}
+
+async function requestPlugin() {
+  const req = document.getElementById('plugin-request').value.trim();
+  if (!req) return;
+  const el = document.getElementById('plugin-request-result');
+  el.textContent = 'Generating plugin via Claude API...';
+  try {
+    const r = await fetch(`${API}/plugins`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action: 'request', request: req})
+    });
+    const d = await r.json();
+    el.textContent = (d.message || '') + (d.code ? '\n\n' + d.code : '');
+    toast('Plugin drafted — review and approve ↓');
+    loadPlugins();
+  } catch (e) {
+    el.textContent = `Error: ${e.message}`;
+    toast('Plugin generation failed', 'err');
+  }
+}
+
+async function approvePlugin(name) {
+  try {
+    const r = await fetch(`${API}/plugins`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action: 'approve', name})
+    });
+    const d = await r.json();
+    toast(d.message || `Plugin ${name} approved ✓`);
+    loadPlugins();
+    checkHealth();
+  } catch (e) {
+    toast('Approval failed', 'err');
+  }
+}
+
+async function rejectPlugin(name) {
+  try {
+    await fetch(`${API}/plugins`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action: 'reject', name})
+    });
+    toast(`Plugin ${name} rejected`);
+    loadPlugins();
+  } catch {
+    toast('Rejection failed', 'err');
+  }
+}
+
+// ── Settings ──────────────────────────────────────────────────────────────
+async function loadSettings() {
+  try {
+    const r = await fetch(`${API}/health`);
+    const d = await r.json();
+    document.getElementById('health-display').textContent = JSON.stringify(d, null, 2);
+    document.getElementById('env-display').textContent =
+      `# Edit ~/Downloads/jarvis/.env to change these values\n\n` +
+      `JARVIS_PLATFORM   = ${d.platform}\n` +
+      `OLLAMA_MODEL      = ${d.model}\n` +
+      `JARVIS_PORT       = 8000\n` +
+      `LOG_LEVEL         = see logs/ for output\n\n` +
+      `# Copy .env.example → .env to configure API keys,\n` +
+      `# Obsidian vault path, and all other settings.`;
+  } catch (e) {
+    document.getElementById('health-display').textContent = `JARVIS offline: ${e.message}`;
+  }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+checkHealth();
+setInterval(checkHealth, 15000);
+</script>
+</body>
+</html>

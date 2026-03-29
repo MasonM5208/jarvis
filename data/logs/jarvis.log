@@ -1,0 +1,258 @@
+Traceback (most recent call last):
+  File "/Users/masonmiller/Downloads/jarvis/main.py", line 23, in <module>
+    from logger import init_logging
+  File "/Users/masonmiller/Downloads/jarvis/logger.py", line 25, in <module>
+    import structlog
+ModuleNotFoundError: No module named 'structlog'
+INFO:     Started server process [14616]
+INFO:     Waiting for application startup.
+[03/27/26 17:31:14] INFO     [2m2026-03-27T21:31:14.124630Z[0m [[32m[1minfo     [0m] [1mjarvis_starting                 
+                             [0m [[0m[1m[34mmain[0m][0m [36mmodel[0m=[35mllama3.2[0m [36mplatform[0m=[35mmac[0m         
+                    ERROR    [2m2026-03-27T21:31:14.190697Z[0m [[31m[1merror    [0m] [1mFailed to send telemetry event  
+                             ClientStartEvent: capture() takes 1 positional argument but 3 were given[0m                
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0m                                       
+                    ERROR    [2m2026-03-27T21:31:14.194585Z[0m [[31m[1merror    [0m] [1mFailed to send telemetry event  
+                             ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given[0m     
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0m                                       
+                    INFO     [2m2026-03-27T21:31:14.200321Z[0m [[32m[1minfo     [0m] [1mknowledge_memory_ready          
+                             [0m [[0m[1m[34mmemory.memory_manager[0m][0m [36mchunks[0m=[35m0[0m                         
+                    INFO     [2m2026-03-27T21:31:14.217903Z[0m [[32m[1minfo     [0m] [1magent_ready                     
+                             [0m [[0m[1m[34magent.agent[0m][0m [36mknowledge_chunks[0m=[35m0[0m                         
+                             [36mmodel[0m=[35mllama3.2[0m [36mplugins_loaded[0m=[35m0[0m                                
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+[03/27/26 17:31:35] INFO     [2m2026-03-27T21:31:35.995561Z[0m [[32m[1minfo     [0m] [1mchat_request                    
+                             [0m [[0m[1m[34mmain[0m][0m [36mmessage_preview[0m=[35mHello[0m                             
+                             [36msession_id[0m=[35md1ec497d-bab2-4476-bd95-f203926ac459[0m                              
+[03/27/26 17:31:38] INFO     [2m2026-03-27T21:31:38.410423Z[0m [[32m[1minfo     [0m] [1mchat_request                    
+                             [0m [[0m[1m[34mmain[0m][0m [36mmessage_preview[0m=[35m'### Task:\nSuggest 3-5 relevant     
+                             follow-up questions or prompt'[0m                                                          
+                             [36msession_id[0m=[35m14a6ee9b-9182-46c4-967f-4c596483044a[0m                              
+[03/27/26 17:31:40] INFO     [2m2026-03-27T21:31:40.888138Z[0m [[32m[1minfo     [0m] [1mtext_ingested                   
+                             [0m [[0m[1m[34mmemory.memory_manager[0m][0m [36mchunks[0m=[35m1[0m                         
+                             [36msource[0m=[35msession:14a6ee9b-9182-46c4-967f-4c596483044a[0m                          
+                    INFO     [2m2026-03-27T21:31:40.903502Z[0m [[32m[1minfo     [0m] [1mchat_request                    
+                             [0m [[0m[1m[34mmain[0m][0m [36mmessage_preview[0m=[35m'### Task:\nGenerate a concise, 3-5  
+                             word title with an emoji s'[0m                                                             
+                             [36msession_id[0m=[35m2d5b49f3-4d83-460e-9faf-ddb054d02796[0m                              
+                    ERROR    [2m2026-03-27T21:31:40.932534Z[0m [[31m[1merror    [0m] [1mFailed to send telemetry event  
+                             CollectionQueryEvent: capture() takes 1 positional argument but 3 were given[0m            
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0m                                       
+[03/27/26 17:31:42] INFO     [2m2026-03-27T21:31:42.333053Z[0m [[32m[1minfo     [0m] [1mchat_request                    
+                             [0m [[0m[1m[34mmain[0m][0m [36mmessage_preview[0m=[35m'### Task:\nGenerate 1-3 broad tags  
+                             categorizing the main them'[0m                                                             
+                             [36msession_id[0m=[35mf77ee9e1-e919-47d1-bc4c-0c578dccd4f4[0m                              
+INFO:     Started server process [19873]
+INFO:     Waiting for application startup.
+[03/28/26 00:00:09] INFO     [2m2026-03-28T04:00:09.507663Z[0m [[32m[1minfo     
+                             [0m] [1mjarvis_starting               [0m          
+                             [[0m[1m[34mmain[0m][0m                             
+                             [36mmodel[0m=[35mllama3.1:8b[0m                    
+                             [36mplatform[0m=[35mmac[0m                         
+                    ERROR    [2m2026-03-28T04:00:09.577401Z[0m [[31m[1merror    
+                             [0m] [1mFailed to send telemetry event             
+                             ClientStartEvent: capture() takes 1 positional     
+                             argument but 3 were given[0m                       
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0
+                             m                                                  
+                    ERROR    [2m2026-03-28T04:00:09.581580Z[0m [[31m[1merror    
+                             [0m] [1mFailed to send telemetry event             
+                             ClientCreateCollectionEvent: capture() takes 1     
+                             positional argument but 3 were given[0m            
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0
+                             m                                                  
+                    INFO     [2m2026-03-28T04:00:09.586605Z[0m [[32m[1minfo     
+                             [0m] [1mknowledge_memory_ready        [0m          
+                             [[0m[1m[34mmemory.memory_manager[0m][0m            
+                             [36mchunks[0m=[35m5231[0m                          
+                    INFO     [2m2026-03-28T04:00:09.592527Z[0m [[32m[1minfo     
+                             [0m] [1mtool_llm                      [0m          
+                             [[0m[1m[34magent.agent[0m][0m                      
+                             [36mbackend[0m=[35mclaude[0m                       
+                             [36mmodel[0m=[35mclaude-haiku-4-5-20251001[0m      
+                    INFO     [2m2026-03-28T04:00:09.595346Z[0m [[32m[1minfo     
+                             [0m] [1mplugin_loaded                 [0m          
+                             [[0m[1m[34mtools.plugin_registry[0m][0m            
+                             [36mfile[0m=[35mget_current_weather.py[0m          
+                             [36mname[0m=[35mget_current_weather[0m             
+                    INFO     [2m2026-03-28T04:00:09.595938Z[0m [[32m[1minfo     
+                             [0m] [1mplugins_restored              [0m          
+                             [[0m[1m[34mtools.plugin_registry[0m][0m            
+                             [36mcount[0m=[35m1[0m                              
+                    INFO     [2m2026-03-28T04:00:09.607577Z[0m [[32m[1minfo     
+                             [0m] [1magent_ready                   [0m          
+                             [[0m[1m[34magent.agent[0m][0m                      
+                             [36mknowledge_chunks[0m=[35m5231[0m                
+                             [36mmodel[0m=[35mllama3.1:8b[0m                    
+                             [36mplugins_loaded[0m=[35m1[0m                     
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Waiting for application shutdown.
+                    INFO     [2m2026-03-28T04:00:09.608558Z[0m [[32m[1minfo     
+                             [0m] [1mjarvis_stopping               [0m          
+                             [[0m[1m[34mmain[0m][0m                             
+INFO:     Application shutdown complete.
+🤖 JARVIS API      → http://localhost:8000
+📊 Dashboard   → http://localhost:8000/ui/dashboard.html
+🔌 Open WebUI  → http://localhost:3000
+✅ JARVIS online — model: llama3.1:8b | chunks: 5231 | plugins: 1
+INFO:     Started server process [1006]
+INFO:     Waiting for application startup.
+[03/28/26 00:04:30] INFO     [2m2026-03-28T04:04:30.135681Z[0m [[32m[1minfo     
+                             [0m] [1mjarvis_starting               [0m          
+                             [[0m[1m[34mmain[0m][0m                             
+                             [36mmodel[0m=[35mllama3.1:8b[0m                    
+                             [36mplatform[0m=[35mmac[0m                         
+                    ERROR    [2m2026-03-28T04:04:30.240904Z[0m [[31m[1merror    
+                             [0m] [1mFailed to send telemetry event             
+                             ClientStartEvent: capture() takes 1 positional     
+                             argument but 3 were given[0m                       
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0
+                             m                                                  
+                    ERROR    [2m2026-03-28T04:04:30.245708Z[0m [[31m[1merror    
+                             [0m] [1mFailed to send telemetry event             
+                             ClientCreateCollectionEvent: capture() takes 1     
+                             positional argument but 3 were given[0m            
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0
+                             m                                                  
+                    INFO     [2m2026-03-28T04:04:30.277797Z[0m [[32m[1minfo     
+                             [0m] [1mknowledge_memory_ready        [0m          
+                             [[0m[1m[34mmemory.memory_manager[0m][0m            
+                             [36mchunks[0m=[35m5231[0m                          
+                    INFO     [2m2026-03-28T04:04:30.284601Z[0m [[32m[1minfo     
+                             [0m] [1mtool_llm                      [0m          
+                             [[0m[1m[34magent.agent[0m][0m                      
+                             [36mbackend[0m=[35mclaude[0m                       
+                             [36mmodel[0m=[35mclaude-haiku-4-5-20251001[0m      
+                    INFO     [2m2026-03-28T04:04:30.288230Z[0m [[32m[1minfo     
+                             [0m] [1mplugin_loaded                 [0m          
+                             [[0m[1m[34mtools.plugin_registry[0m][0m            
+                             [36mfile[0m=[35mget_current_weather.py[0m          
+                             [36mname[0m=[35mget_current_weather[0m             
+                    INFO     [2m2026-03-28T04:04:30.288861Z[0m [[32m[1minfo     
+                             [0m] [1mplugins_restored              [0m          
+                             [[0m[1m[34mtools.plugin_registry[0m][0m            
+                             [36mcount[0m=[35m1[0m                              
+                    INFO     [2m2026-03-28T04:04:30.302100Z[0m [[32m[1minfo     
+                             [0m] [1magent_ready                   [0m          
+                             [[0m[1m[34magent.agent[0m][0m                      
+                             [36mknowledge_chunks[0m=[35m5231[0m                
+                             [36mmodel[0m=[35mllama3.1:8b[0m                    
+                             [36mplugins_loaded[0m=[35m1[0m                     
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started server process [978]
+INFO:     Waiting for application startup.
+[03/28/26 11:56:00] INFO     [2m2026-03-28T15:56:00.775362Z[0m [[32m[1minfo     
+                             [0m] [1mjarvis_starting               [0m          
+                             [[0m[1m[34mmain[0m][0m                             
+                             [36mmodel[0m=[35mllama3.1:8b[0m                    
+                             [36mplatform[0m=[35mmac[0m                         
+                    ERROR    [2m2026-03-28T15:56:00.883906Z[0m [[31m[1merror    
+                             [0m] [1mFailed to send telemetry event             
+                             ClientStartEvent: capture() takes 1 positional     
+                             argument but 3 were given[0m                       
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0
+                             m                                                  
+                    ERROR    [2m2026-03-28T15:56:00.888038Z[0m [[31m[1merror    
+                             [0m] [1mFailed to send telemetry event             
+                             ClientCreateCollectionEvent: capture() takes 1     
+                             positional argument but 3 were given[0m            
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0
+                             m                                                  
+                    INFO     [2m2026-03-28T15:56:00.904068Z[0m [[32m[1minfo     
+                             [0m] [1mknowledge_memory_ready        [0m          
+                             [[0m[1m[34mmemory.memory_manager[0m][0m            
+                             [36mchunks[0m=[35m5254[0m                          
+                    INFO     [2m2026-03-28T15:56:00.910211Z[0m [[32m[1minfo     
+                             [0m] [1mtool_llm                      [0m          
+                             [[0m[1m[34magent.agent[0m][0m                      
+                             [36mbackend[0m=[35mclaude[0m                       
+                             [36mmodel[0m=[35mclaude-haiku-4-5-20251001[0m      
+                    INFO     [2m2026-03-28T15:56:00.913555Z[0m [[32m[1minfo     
+                             [0m] [1mplugin_loaded                 [0m          
+                             [[0m[1m[34mtools.plugin_registry[0m][0m            
+                             [36mfile[0m=[35mget_current_weather.py[0m          
+                             [36mname[0m=[35mget_current_weather[0m             
+                    INFO     [2m2026-03-28T15:56:00.914099Z[0m [[32m[1minfo     
+                             [0m] [1mplugins_restored              [0m          
+                             [[0m[1m[34mtools.plugin_registry[0m][0m            
+                             [36mcount[0m=[35m1[0m                              
+                    INFO     [2m2026-03-28T15:56:00.928280Z[0m [[32m[1minfo     
+                             [0m] [1magent_ready                   [0m          
+                             [[0m[1m[34magent.agent[0m][0m                      
+                             [36mknowledge_chunks[0m=[35m5254[0m                
+                             [36mmodel[0m=[35mllama3.1:8b[0m                    
+                             [36mplugins_loaded[0m=[35m1[0m                     
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+[03/28/26 11:58:41] INFO     [2m2026-03-28T15:58:41.156488Z[0m [[32m[1minfo     
+                             [0m] [1mchat_request                  [0m          
+                             [[0m[1m[34mmain[0m][0m                             
+                             [36mmessage_preview[0m=[35mHello[0m                
+                             [36msession_id[0m=[35m30c4bb5a-42f2-4ded-8b46-7f0d1
+                             06cb8a7[0m                                         
+                    ERROR    [2m2026-03-28T15:58:41.571676Z[0m [[31m[1merror    
+                             [0m] [1mFailed to send telemetry event             
+                             CollectionQueryEvent: capture() takes 1 positional 
+                             argument but 3 were given[0m                       
+                             [[0m[1m[34mchromadb.telemetry.product.posthog[0m][0
+                             m                                                  
+[03/28/26 11:58:44] INFO     [2m2026-03-28T15:58:44.181285Z[0m [[32m[1minfo     
+                             [0m] [1mtext_ingested                 [0m          
+                             [[0m[1m[34mmemory.memory_manager[0m][0m            
+                             [36mchunks[0m=[35m2[0m                             
+                             [36msource[0m=[35msession:30c4bb5a-42f2-4ded-8b46-7
+                             f0d106cb8a7[0m                                     
+[03/28/26 11:58:51] INFO     [2m2026-03-28T15:58:51.359673Z[0m [[32m[1minfo     
+                             [0m] [1mchat_request                  [0m          
+                             [[0m[1m[34mmain[0m][0m                             
+                             [36mmessage_preview[0m=[35m'what is the weather in 
+                             indianapolis'[0m                                   
+                             [36msession_id[0m=[35m30c4bb5a-42f2-4ded-8b46-7f0d1
+                             06cb8a7[0m                                         
+[03/28/26 11:58:54] INFO     [2m2026-03-28T15:58:54.324254Z[0m [[32m[1minfo     
+                             [0m] [1mresponse:                                  
+                             https://grokipedia.com/api/typeahead?query=current+
+                             weather+Indianapolis+Indiana&limit=1 200[0m        
+                             [[0m[1m[34mprimp[0m][0m                            
+                    INFO     [2m2026-03-28T15:58:54.404722Z[0m [[32m[1minfo     
+                             [0m] [1mresponse:                                  
+                             https://en.wikipedia.org/w/api.php?action=opensearc
+                             h&profile=fuzzy&limit=1&search=current%20weather%20
+                             Indianapolis%20Indiana 200[0m                      
+                             [[0m[1m[34mprimp[0m][0m                            
+[03/28/26 11:58:55] INFO     [2m2026-03-28T15:58:55.313475Z[0m [[32m[1minfo     
+                             [0m] [1mresponse: https://html.duckduckgo.com/html/
+                             200[0m [[0m[1m[34mprimp[0m][0m                     
+[03/28/26 11:58:59] INFO     [2m2026-03-28T15:58:59.190663Z[0m [[32m[1minfo     
+                             [0m] [1mtext_ingested                 [0m          
+                             [[0m[1m[34mmemory.memory_manager[0m][0m            
+                             [36mchunks[0m=[35m2[0m                             
+                             [36msource[0m=[35msession:30c4bb5a-42f2-4ded-8b46-7
+                             f0d106cb8a7[0m                                     
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+[03/28/26 16:02:09] INFO     [2m2026-03-28T20:02:09.457727Z[0m [[32m[1minfo     
+                             [0m] [1mjarvis_stopping               [0m          
+                             [[0m[1m[34mmain[0m][0m                             
+INFO:     Application shutdown complete.
+INFO:     Finished server process [978]
+Traceback (most recent call last):
+  File "/Users/masonmiller/Downloads/jarvis/main.py", line 26, in <module>
+    from agent.agent import JarvisAgent
+  File "/Users/masonmiller/Downloads/jarvis/agent/agent.py", line 23, in <module>
+    from config.settings import settings
+ImportError: cannot import name 'settings' from 'config.settings' (/Users/masonmiller/Downloads/jarvis/config/settings.py)
+Traceback (most recent call last):
+  File "/Users/masonmiller/Downloads/jarvis/main.py", line 26, in <module>
+    from agent.agent import JarvisAgent
+  File "/Users/masonmiller/Downloads/jarvis/agent/agent.py", line 23, in <module>
+    from config.settings import settings
+ImportError: cannot import name 'settings' from 'config.settings' (/Users/masonmiller/Downloads/jarvis/config/settings.py)
+Traceback (most recent call last):
+  File "/Users/masonmiller/Downloads/jarvis/main.py", line 26, in <module>
+    from agent.agent import JarvisAgent
+  File "/Users/masonmiller/Downloads/jarvis/agent/agent.py", line 23, in <module>
+    from config.settings import settings
+ImportError: cannot import name 'settings' from 'config.settings' (/Users/masonmiller/Downloads/jarvis/config/settings.py)

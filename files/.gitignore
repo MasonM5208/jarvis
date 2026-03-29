@@ -1,0 +1,29 @@
+# ── Secrets ───────────────────────────────────────────────────────────────────
+.env
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# ── JARVIS data (large / auto-generated) ──────────────────────────────────────
+data/chroma/
+data/sqlite/
+data/uploads/
+logs/
+
+# ── Generated plugins (review before committing) ──────────────────────────────
+plugins/*.py
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+*.orig
+
+# ── Editor ────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
