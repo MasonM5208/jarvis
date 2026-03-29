@@ -25,6 +25,8 @@ from pydantic import BaseModel
 from config.settings import LLM_MODEL, AGENT_NAME, UPLOADS_PATH
 from agent.agent import JarvisAgent
 from pathlib import Path
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 
 
 # ── App lifecycle ─────────────────────────────────────────────────────────────
@@ -48,6 +50,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+_interface_dir = Path(__file__).parent / "interface"
+if _interface_dir.exists():
+    app.mount("/ui", StaticFiles(directory=str(_interface_dir), html=True), name="ui")
 
 # ── Request / response models ─────────────────────────────────────────────────
 
