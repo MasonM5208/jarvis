@@ -20,6 +20,7 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from config.settings import LLM_MODEL, AGENT_NAME, UPLOADS_PATH
@@ -40,6 +41,7 @@ async def lifespan(app: FastAPI):
     print("👋 JARVIS shutting down.")
 
 app = FastAPI(title="JARVIS", version="1.0.0", lifespan=lifespan)
+app.mount("/ui", StaticFiles(directory="interface", html=True), name="ui")
 
 app.add_middleware(
     CORSMiddleware,
@@ -247,6 +249,25 @@ async def memory_summaries():
         raise HTTPException(503, "Agent not ready")
     return agent.episodic.get_summaries()
 
+
+
+
+# ── GA feedback endpoints ─────────────────────────────────────────────────────
+
+class FeedbackRequest(BaseModel):
+    session_id: str
+    positive: bool
+
+@app.post("/feedback")
+async def record_feedback(req: FeedbackRequest):
+    from ga.logger import ga_logger
+    updated = ga_logger.record_feedback(req.session_id, req.positive)
+    return {"updated": updated}
+
+@app.get("/ga/logs")
+async def ga_logs(limit: int = 50):
+    from ga.logger import ga_logger
+    return ga_logger.get_recent(limit)
 
 @app.post("/tts/toggle")
 async def tts_toggle(enabled: bool):

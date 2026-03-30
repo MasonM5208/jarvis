@@ -19,3 +19,7 @@ data/uploads/
 
 # Mac
 .DS_Store
+
+# Databases
+*.db
+data/*.db

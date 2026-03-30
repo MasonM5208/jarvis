@@ -237,8 +237,7 @@ def _cmd_search(query: str, memory) -> CommandResult:
         results = memory.search_conversations(query, n=5)
         if not results:
             return CommandResult(prompt="", pre_response=f"No past conversations found for: **{query}**", bypass_llm=True)
-        lines = [f"🔍 Top {len(results)} matches for **{query}**:
-"]
+        lines = [f"🔍 Top {len(results)} matches for **{query}**:\n"]
         for i, r in enumerate(results, 1):
             ts = r["ingested_at"][:10] if r["ingested_at"] else "unknown date"
             preview = r["text"][:200].replace("\n", " ")

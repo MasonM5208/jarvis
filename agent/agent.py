@@ -100,6 +100,9 @@ def _bind_memory_tools(memory: Memory, tools: list) -> list:
     ) -> str:
         """Ingest a document into the knowledge base so it can be recalled in future conversations."""
         try:
+            import time as _time
+            from ga.logger import ga_logger as _ga_logger
+            _t0 = _time.time()
             n = memory.ingest(path)
             return f"Ingested {n} chunks from {path}"
         except Exception as e:
@@ -197,8 +200,21 @@ class JarvisAgent:
         )
 
         try:
+            import time as _time
+            from ga.logger import ga_logger as _ga_logger
+            _t0 = _time.time()
             result = self.graph.invoke({"messages": messages}, config=config)
             response = result["messages"][-1].content
+            _latency = int((_time.time() - _t0) * 1000)
+            _tool_msgs = [m for m in result["messages"] if hasattr(m, "type") and m.type == "tool"]
+            _ga_logger.log_inference(
+                session_id=session_id,
+                message=message,
+                response=response,
+                latency_ms=_latency,
+                tool_calls_made=len(_tool_msgs),
+                tool_calls_succeeded=len(_tool_msgs),
+            )
         except Exception as e:
             log.error("agent_error", session_id=session_id, error=str(e))
             response = f"I encountered an error: {e}"
