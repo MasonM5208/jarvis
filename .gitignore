@@ -1,1 +1,21 @@
+# Local machine overrides (never commit)
+local_settings.py
+
+# Environment
 .env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Data (node-local)
+data/chroma/
+data/sqlite/
+data/uploads/
+
+# Mac
+.DS_Store
