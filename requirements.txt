@@ -34,3 +34,4 @@ pyaudio>=0.2.14              # requires: brew install portaudio
 # ── Pi-specific (uncomment when deploying to Raspberry Pi) ───────────────────
 # picamera2
 # llama-cpp-python
+pymupdf4llm
