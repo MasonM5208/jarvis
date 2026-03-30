@@ -251,6 +251,24 @@ class Memory:
         log.info("obsidian_sync_done", ok=len(results["ok"]), errors=len(results["errors"]))
         return results
 
+
+    def search_conversations(self, query: str, n: int = 5) -> list[dict]:
+        """Semantic search over past conversation turns stored in ChromaDB."""
+        hits = self.knowledge.search(query, n=n * 3)
+        results = []
+        for h in hits:
+            source = h["source"]
+            if source.startswith("session:"):
+                results.append({
+                    "text": h["text"],
+                    "session_id": source.replace("session:", ""),
+                    "score": h["score"],
+                    "ingested_at": h["meta"].get("ingested_at", ""),
+                })
+            if len(results) >= n:
+                break
+        return results
+
     def stats(self) -> dict:
         return {
             "knowledge_chunks": self.knowledge.count(),

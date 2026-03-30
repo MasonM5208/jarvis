@@ -227,6 +227,26 @@ def _cmd_plugin(args: str, memory) -> CommandResult:
     ))
 
 
+
+def _cmd_search(query: str, memory) -> CommandResult:
+    if not query:
+        return CommandResult(prompt="", pre_response="Usage: `/search <query>`", bypass_llm=True)
+    if not memory:
+        return CommandResult(prompt="", pre_response="❌ Memory not available.", bypass_llm=True)
+    try:
+        results = memory.search_conversations(query, n=5)
+        if not results:
+            return CommandResult(prompt="", pre_response=f"No past conversations found for: **{query}**", bypass_llm=True)
+        lines = [f"🔍 Top {len(results)} matches for **{query}**:
+"]
+        for i, r in enumerate(results, 1):
+            ts = r["ingested_at"][:10] if r["ingested_at"] else "unknown date"
+            preview = r["text"][:200].replace("\n", " ")
+            lines.append(f"**{i}.** `{ts}` (score: {r['score']:.2f})\n> {preview}\n")
+        return CommandResult(prompt="", pre_response="\n".join(lines), bypass_llm=True)
+    except Exception as e:
+        return CommandResult(prompt="", pre_response=f"❌ Search failed: {e}", bypass_llm=True)
+
 def _cmd_help(_: str, __) -> CommandResult:
     return CommandResult(prompt="", bypass_llm=True, pre_response="""**JARVIS Slash Commands**
 
@@ -238,6 +258,7 @@ def _cmd_help(_: str, __) -> CommandResult:
 | `/quiz <topic>` | 10-question self-assessment |
 | `/ingest <path>` | Ingest a file or folder |
 | `/obsidian [path]` | Sync Obsidian vault |
+| `/search <query>` | Semantic search past conversations |
 | `/plugin <request>` | Request a new capability |
 | `/help` | Show this message |""")
 
@@ -250,6 +271,7 @@ _COMMANDS: dict[str, Callable] = {
     "ingest":     _cmd_ingest,
     "obsidian":   _cmd_obsidian,
     "plugin":     _cmd_plugin,
+    "search":     _cmd_search,
     "help":       _cmd_help,
 }
 
